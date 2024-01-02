@@ -6,7 +6,7 @@ H/W path        Device        Class          Description
 /0/1                          processor      12th Gen Intel(R) Core(TM) i9-12900K
 /0/100                        bridge         Intel Corporation
 /0/100/1                      bridge         12th Gen Core Processor PCI Express x16 Controller #1
-/0/100/1/0                    display        GA102 [GeForce RTX 3090]
+/0/100/1/0                    display        GA102GL [RTX A6000]
 /0/100/1/0.1    card1         multimedia     GA102 High Definition Audio Controller
 /0/100/1/0.1/0  input10       input          HDA NVidia HDMI/DP,pcm=11
 /0/100/1/0.1/1  input11       input          HDA NVidia HDMI/DP,pcm=12
@@ -69,3 +69,96 @@ H/W path        Device        Class          Description
 /3              input2        input          Power Button
 /4              input3        input          Video Bus
 /5              input4        input          Intel HID events
+H/W path        Device          Class          Description
+==========================================================
+                                system         Z690 UD DDR4 (Default string)
+/0                              bus            Z690 UD DDR4
+/0/0                            memory         64KiB BIOS
+/0/3b                           memory         64GiB System Memory
+/0/3b/0                         memory         32GiB DIMM DDR4 Synchronous 2400 MHz (0.4 ns)
+/0/3b/1                         memory         [empty]
+/0/3b/2                         memory         32GiB DIMM DDR4 Synchronous 2400 MHz (0.4 ns)
+/0/3b/3                         memory         [empty]
+/0/49                           memory         384KiB L1 cache
+/0/4a                           memory         256KiB L1 cache
+/0/4b                           memory         10MiB L2 cache
+/0/4c                           memory         30MiB L3 cache
+/0/4d                           memory         256KiB L1 cache
+/0/4e                           memory         512KiB L1 cache
+/0/4f                           memory         4MiB L2 cache
+/0/50                           memory         30MiB L3 cache
+/0/51                           processor      12th Gen Intel(R) Core(TM) i9-12900K
+/0/100                          bridge         Intel Corporation
+/0/100/1                        bridge         12th Gen Core Processor PCI Express x16 Controller #1
+/0/100/1/0                      display        GA102GL [RTX A6000]
+/0/100/1/0.1    card1           multimedia     GA102 High Definition Audio Controller
+/0/100/1/0.1/0  input10         input          HDA NVidia HDMI/DP,pcm=11
+/0/100/1/0.1/1  input11         input          HDA NVidia HDMI/DP,pcm=12
+/0/100/1/0.1/2  input5          input          HDA NVidia HDMI/DP,pcm=3
+/0/100/1/0.1/3  input6          input          HDA NVidia HDMI/DP,pcm=7
+/0/100/1/0.1/4  input7          input          HDA NVidia HDMI/DP,pcm=8
+/0/100/1/0.1/5  input8          input          HDA NVidia HDMI/DP,pcm=9
+/0/100/1/0.1/6  input9          input          HDA NVidia HDMI/DP,pcm=10
+/0/100/2                        display        AlderLake-S GT1
+/0/100/6                        bridge         12th Gen Core Processor PCI Express x4 Controller #0
+/0/100/6/0      /dev/nvme0      storage        BIOSTAR M760-1TB
+/0/100/6/0/0    hwmon1          disk           NVMe disk
+/0/100/6/0/2    /dev/ng0n1      disk           NVMe disk
+/0/100/6/0/1    /dev/nvme0n1    disk           1024GB NVMe disk
+/0/100/6/0/1/1                  volume         1074MiB Windows FAT volume
+/0/100/6/0/1/2  /dev/nvme0n1p2  volume         2GiB EXT4 volume
+/0/100/6/0/1/3  /dev/nvme0n1p3  volume         950GiB EFI partition
+/0/100/a                        generic        Platform Monitoring Technology
+/0/100/14                       bus            Intel Corporation
+/0/100/14/0     usb1            bus            xHCI Host Controller
+/0/100/14/0/6                   bus            USB2.0 Hub
+/0/100/14/0/9                   bus            USB2.0 Hub
+/0/100/14/0/b                   input          ITE Device
+/0/100/14/1     usb2            bus            xHCI Host Controller
+/0/100/14.2                     memory         RAM memory
+/0/100/15                       bus            Intel Corporation
+/0/100/15.1                     bus            Intel Corporation
+/0/100/15.2                     bus            Intel Corporation
+/0/100/15.3                     bus            Intel Corporation
+/0/100/16                       communication  Intel Corporation
+/0/100/17                       storage        Intel Corporation
+/0/100/19                       bus            Intel Corporation
+/0/100/19.1                     bus            Intel Corporation
+/0/100/1c                       bridge         Intel Corporation
+/0/100/1c.2                     bridge         Intel Corporation
+/0/100/1c.2/0   enp4s0          network        RTL8125 2.5GbE Controller
+/0/100/1f                       bridge         Intel Corporation
+/0/100/1f/0                     system         PnP device PNP0c02
+/0/100/1f/1                     communication  PnP device PNP0501
+/0/100/1f/2                     system         PnP device PNP0c02
+/0/100/1f/3                     system         PnP device PNP0c02
+/0/100/1f/4                     system         PnP device PNP0c02
+/0/100/1f/5                     system         PnP device PNP0c02
+/0/100/1f/6                     system         PnP device PNP0c02
+/0/100/1f/7                     system         PnP device PNP0c02
+/0/100/1f.3     card0           multimedia     Intel Corporation
+/0/100/1f.3/0   input12         input          HDA Intel PCH Front Mic
+/0/100/1f.3/1   input13         input          HDA Intel PCH Rear Mic
+/0/100/1f.3/2   input14         input          HDA Intel PCH Line
+/0/100/1f.3/3   input15         input          HDA Intel PCH Line Out
+/0/100/1f.3/4   input16         input          HDA Intel PCH Front Headphone
+/0/100/1f.3/5   input17         input          HDA Intel PCH HDMI/DP,pcm=3
+/0/100/1f.3/6   input18         input          HDA Intel PCH HDMI/DP,pcm=7
+/0/100/1f.3/7   input19         input          HDA Intel PCH HDMI/DP,pcm=8
+/0/100/1f.3/8   input20         input          HDA Intel PCH HDMI/DP,pcm=9
+/0/100/1f.3/9   input21         input          HDA Intel PCH HDMI/DP,pcm=10
+/0/100/1f.3/a   input22         input          HDA Intel PCH HDMI/DP,pcm=11
+/0/100/1f.3/b   input23         input          HDA Intel PCH HDMI/DP,pcm=12
+/0/100/1f.3/c   input24         input          HDA Intel PCH HDMI/DP,pcm=13
+/0/100/1f.3/d   input25         input          HDA Intel PCH HDMI/DP,pcm=14
+/0/100/1f.3/e   input26         input          HDA Intel PCH HDMI/DP,pcm=15
+/0/100/1f.3/f   input27         input          HDA Intel PCH HDMI/DP,pcm=16
+/0/100/1f.3/10  input28         input          HDA Intel PCH HDMI/DP,pcm=17
+/0/100/1f.4                     bus            Intel Corporation
+/0/100/1f.5                     bus            Intel Corporation
+/1                              power          To Be Filled By O.E.M.
+/2              input0          input          Sleep Button
+/3              input1          input          Power Button
+/4              input2          input          Power Button
+/5              input3          input          Video Bus
+/6              input4          input          Intel HID events
