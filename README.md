@@ -1,5 +1,5 @@
 ![Python 3.8](https://img.shields.io/badge/python-3.8-green.svg)
-<div align="center"><font size="20">Contrastive Multi-view Continual Learning</font> </div>
+<div align="center"><font size="40">Contrastive Multi-view Continual Learning</font> </div>
 
 <div align="center">
 <img src=https://github.com/honestws/MVM/blob/master/img/illustrate.svg width=85% />
