@@ -1,20 +1,20 @@
 ![Python 3.8](https://img.shields.io/badge/python-3.8-green.svg)
-# Mnemonic Consistency in Semi-supervised Multi-view Continual Learning
+# Contrastive Multi-view Continual Learning
 
 <div align="center">
 <img src=./img/illustration.svg width=85% />
 </div>
 
 This repository is the PyTorch source code implementation of 
-[Mnemonic Consistency in Semi-supervised Multi-view Continual Learning]() and is 
-currently being reviewed in AAAI-2024. This is a demo code to train and evaluate
-the Semi-MVAF model on the diverse features (BYOL, SwAV, BiGAN, SDSSL) extracted from the [UIUC-Sports]() dataset.
+[Contrastive Multi-view Continual Learning]() and is 
+currently being reviewed in IJCAI-2024. This is a demo code to illustrate the basic motivation 
+for fast training and evaluating the MVM model in downstream task. 
+The end-to-end MVM model with diverse views will be released soon.
 
-The full project will be released soon after code integration.
-
-You can download the features in
-[BaiduPan](https://pan.baidu.com/s/18kYUbORqliEOWL_hxQUaRA) (password: AAAI).
-Please put the downloading file to the root path of the project.
+You can download the data in
+[Google Drive](https://drive.google.com/file/d/1Is9GeVAe9vy1l5xg7Xqwa9lXAYRm3PMu/view?usp=sharing)
+ and 
+put the downloading file to the root path of the project to evaluate our method.
 
 Thanks for your effort and time to review our paper.
 
