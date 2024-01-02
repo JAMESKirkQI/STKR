@@ -18,7 +18,7 @@ def argparse_option():
 
     # other setting
     parser.add_argument('--lamb1', type=float, default=2.5, help='coefficient for the CVDC loss function')
-    parser.add_argument('--lamb2', type=float, default=3.0, help='coefficient for the RCCA loss function')
+    parser.add_argument('--lamb2', type=float, default=3.0, help='coefficient for the CACO loss function')
     parser.add_argument('--sigma', type=float, default=1, help='parameter of Gaussian Kernel')
     parser.add_argument('--alpha', type=float, default=0.9, help='parameter of label propagation')
     parser.add_argument('--nearest', type=int, default=3, help='K nearest points')
