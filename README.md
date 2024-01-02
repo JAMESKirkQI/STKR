@@ -2,7 +2,7 @@
 # Contrastive Multi-view Continual Learning
 
 <div align="center">
-<img src=./img/illustration.svg width=85% />
+<img src=https://github.com/honestws/MVM/blob/master/img/illustrate.svg width=85% />
 </div>
 
 This repository is the PyTorch source code implementation of 
