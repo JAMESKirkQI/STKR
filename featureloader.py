@@ -1,7 +1,6 @@
 import torch
 from torch.utils.data import TensorDataset, Subset
 from torch.utils.data import DataLoader
-# import scipy.io
 
 
 class MultiviewDataset(TensorDataset):
@@ -13,7 +12,6 @@ class FeatureLoader(object):
     def __init__(self, f_path='xy_tensor_uiuc.pt'):
         xy = torch.load(f_path)
         self.view1 = xy[0]
-        # scipy.io.savemat('feature.mat', {'feature': xy[3].numpy(), 'label': xy[4].numpy()})
         self.view2 = xy[1]
         self.view3 = xy[2]
         self.view4 = xy[3]

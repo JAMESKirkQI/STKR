@@ -11,8 +11,8 @@
 This repository is the PyTorch source code implementation of 
 [Contrastive Multi-view Continual Learning]() and is 
 currently being reviewed in IJCAI-2024. This is a demo code to illustrate the basic motivation 
-for fast training and evaluating the MVM model. 
-The end-to-end MVM model with diverse views will be released soon.
+for fast training and evaluating the MVKR model. 
+The end-to-end MVKR model with diverse views will be released soon.
 
 You can download the data in
 [Google Drive](https://drive.google.com/file/d/1Is9GeVAe9vy1l5xg7Xqwa9lXAYRm3PMu/view?usp=sharing)
