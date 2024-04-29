@@ -1,11 +1,20 @@
+import time
+
 import numpy as np
 import torch
 import dgl
-from dgl.nn import LabelPropagation
+# if dgl version is 0.8.x then you should import the code bellow
+# from dgl.nn import LabelPropagation
+import wandb
+from dgl.nn.pytorch.utils import LabelPropagation
 from torch import nn
 from torch.optim import Adam
+from tqdm import tqdm
 from loss import Loss
-from tensorboardX import SummaryWriter
+
+
+# from tensorboardX import SummaryWriter
+# from torch.utils.tensorboard import SummaryWriter
 
 
 class Learner(object):
@@ -15,8 +24,8 @@ class Learner(object):
         self.projector = projector
         self.device = device
         self.optimizer = Adam(projector.parameters(),
-                             lr=opt.lr,
-                             weight_decay=opt.weight_decay)
+                              lr=opt.lr,
+                              weight_decay=opt.weight_decay)
         self.cross_entropy_loss = nn.CrossEntropyLoss()
         self.opt = opt
         self.cls = cls
@@ -24,7 +33,7 @@ class Learner(object):
         num_tasks = len(self.unlabeled_dataloader)
         self.acc_array = np.zeros((num_tasks, num_tasks))
         self.label_propagation = LabelPropagation(k=400, alpha=0.9, clamp=False, normalize=True)
-        self.writer = SummaryWriter("logs")
+        # self.writer = SummaryWriter("logs")
 
     def compute_avg_fgt(self):
         best_acc = np.max(self.acc_array, axis=1)
@@ -35,7 +44,7 @@ class Learner(object):
             'The averaged forgetting of previous observed data: %.2f%%.'
             % avg_fgt
         )
-
+        wandb.log({"averaged forgetting": avg_fgt})
 
     def test(self, k):
         self.projector.eval()
@@ -81,11 +90,12 @@ class Learner(object):
             num_correct_pred += cur_num_correct_pred
             num_observed_data += len(target)
 
-        acc = np.mean(self.acc_array[k,:k+1]) * 100
+        acc = np.mean(self.acc_array[k, :k + 1]) * 100
         print(
             'The current task number: %d, the averaged accuracy of previous observed data: %.2f%%.'
             % (k, acc)
         )
+        wandb.log({"averaged accuracy": acc})
         self.projector.train()
         return acc
 
@@ -123,30 +133,51 @@ class Learner(object):
                 total += len(target)
                 correct += predicted.eq(target).sum().item()
             test_acc.append(correct / total)
+        print("test acc:{}".format(sum(test_acc) / n))
 
         # self.test(10000)
 
         counter = 0
-
+        ACC = []
         for k, (xu, target) in enumerate(self.unlabeled_dataloader):
             xu = [xu[p].to(self.device) for p in range(n)]
-            for i in range(self.opt.iteration//30):
+            for i in range(self.opt.iteration // 30):
                 ol, _ = self.projector(xl)
                 ou, _ = self.projector(xu)
                 o = [torch.concat([ol[i], ou[i]], dim=0) for i in range(n)]
-                caco_loss = self.mvm_loss.caco(o)
-                cvdc_loss = self.mvm_loss.cvdc(o)
-                semi_loss = self.mvm_loss.vskp(ol, ou, label, target, self.label_propagation, k)
-                loss = semi_loss + self.opt.lamb1 * cvdc_loss - self.opt.lamb2 * caco_loss
+                dic = {}
+                caco_loss = torch.zeros(1, device=self.device)
+                cvdc_loss = torch.zeros(1, device=self.device)
+                rect_loss = torch.zeros(1, device=self.device)
+                cprr_loss = torch.zeros(1, device=self.device)
+                if self.opt.CACO:
+                    caco_loss = self.mvm_loss.caco(o)
+                    dic["CACO loss"] = caco_loss.item()
+                if self.opt.CVDC:
+                    cvdc_loss = self.mvm_loss.cvdc(o)
+                    dic["CVDC loss"] = cvdc_loss.item()
+                if self.opt.RECT:
+                    rect_loss = self.mvm_loss.rect(ol, ou, self.opt.k_nums, self.opt.diffusion_iteration,
+                                                   self.opt.alphaRECT,
+                                                   self.opt.sigmaDG, scale=self.opt.scale, CS=self.opt.CS,
+                                                   CS_iterations=self.opt.CS_iterations)
+                    dic["RECT loss"] = rect_loss.item()
+
+                semi_loss, result = self.mvm_loss.vskp(ol, ou, label, target, self.label_propagation, k)
+                dic["Semi loss"] = semi_loss.item()
+                if self.opt.CPRR:
+                    cprr_loss = self.mvm_loss.cprr(ol, ou, label, result,
+                                                   self.opt.upper_bound,
+                                                   self.opt.avg_select, self.device)
+                    dic["CPRR loss"] = cprr_loss.item()
+                loss = semi_loss + self.opt.lambCPRR * cprr_loss + self.opt.lambRECT * rect_loss + self.opt.lambCVDC * cvdc_loss - self.opt.lambCACO * caco_loss
+                dic["loss"] = loss.item()
                 self.optimizer.zero_grad()
                 loss.backward(retain_graph=True)
                 self.optimizer.step()
-                self.writer.add_scalar("CACO loss", caco_loss.item(), global_step=counter)
-                self.writer.add_scalar("CVDC loss", cvdc_loss.item(), global_step=counter)
-                self.writer.add_scalar("Semi loss", semi_loss.item(), global_step=counter)
+                wandb.log(dic, step=counter)
                 counter += 1
 
-            self.test(k)
-
+            ACC.append(self.test(k))
+        wandb.log({"Global acc": sum(ACC) / len(ACC)})
         self.compute_avg_fgt()
-

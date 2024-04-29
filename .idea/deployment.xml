@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="manager@192.168.0.100:22 (2)" remoteFilesAllowedToDisappearOnAutoupload="false" autoUploadExternalChanges="true">
+  <component name="PublishConfigData" autoUpload="Always" remoteFilesAllowedToDisappearOnAutoupload="false" autoUploadExternalChanges="true">
     <serverData>
-      <paths name="manager@192.168.0.100:22">
+      <paths name="cq">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="manager@192.168.0.100:22 (2)">
-        <serverdata>
-          <mappings>
-            <mapping deploy="/home/manager/MVM" local="$PROJECT_DIR$" />
+            <mapping deploy="/code/2024/MVM_Plus" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
