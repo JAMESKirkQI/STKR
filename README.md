@@ -13,11 +13,11 @@ for fast training and evaluating the STKR model.
 </div>
 Spatiotemporal unlabeled streaming data acquisitions from different views. This work proposed to leverage label propagation, pairwise ranking and cross-view graph diffusion with view-specific learnable dictionaries to process multi-view data streaming with limited annotation. We leverage the spatial consistent principle of multi-view learning to equalize retentive  intensities among sub-models, enhancing retentive robustness beyond single-view continual learning approaches. 
 
-##Usage
+## Usage
 
 ---
 
-###Requirements
+### Requirements
 We use single RTX A6000 48G GPU for training and evaluation. Refer to `hardware.txt` for hardware related parameters.
 To install a working environment run:
 ```
@@ -48,6 +48,7 @@ Organize them in root dir folder as follows:
 ```
 
 ### Validation
+
 ```
 python main.py
 ```
