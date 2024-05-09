@@ -109,7 +109,7 @@ class Loss(object):
                 cprr_loss += torch.sum(distance)
         return cprr_loss / (n * num_unlabeled_data * cls)
 
-    def vskp(self, ol, ou, label, target, label_propagation, k, cls=8):
+    def vskr(self, ol, ou, label, target, label_propagation, k, cls=8):
         n = len(ol)
         label = label.cpu()
         num_labeled_data = ol[0].size(0)

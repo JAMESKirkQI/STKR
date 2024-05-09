@@ -162,7 +162,7 @@ class Learner(object):
                                                    CS_iterations=self.opt.CS_iterations)
                     dic["RECT loss"] = rect_loss.item()
 
-                semi_loss, result = self.mvm_loss.vskp(ol, ou, label, target, self.label_propagation, k)
+                semi_loss, result = self.mvm_loss.vskr(ol, ou, label, target, self.label_propagation, k)
                 dic["Semi loss"] = semi_loss.item()
                 if self.opt.CPRR:
                     cprr_loss = self.mvm_loss.cprr(ol, ou, label, result,
