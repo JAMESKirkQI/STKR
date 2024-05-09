@@ -8,13 +8,10 @@ from argpaser import argparse_option
 from featureloader import FeatureLoader
 from learner import Learner
 from projector import Projector
-# os.environ["WANDB_API_KEY"] = 'KEY'
-# os.environ["WANDB_MODE"] = "offline"
 
 # ssh -fgN -L 16006:127.0.0.1:6006 honestws@192.168.0.101
 if __name__ == '__main__':
     # wandb.login(key="your wandb key")
-    wandb.login(key="dd021004193267f24eaa665ce3833471cfcc2b42")
     device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
     opt = argparse_option()
     # start a new wandb run to track this script

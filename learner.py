@@ -14,7 +14,6 @@ from loss import Loss
 
 
 # from tensorboardX import SummaryWriter
-# from torch.utils.tensorboard import SummaryWriter
 
 
 class Learner(object):
